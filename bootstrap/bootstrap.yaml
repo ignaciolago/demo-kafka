@@ -25,7 +25,7 @@ spec:
     server: "https://kubernetes.default.svc"
   source:
     path: cdc-camel-kafka-demo/components
-    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    repoURL: "https://github.com/ignaciolago/demo-kafka.git"
     targetRevision: main
   project: cdc-camel-kafka-demo
 ---
@@ -55,6 +55,8 @@ spec:
     server: "https://kubernetes.default.svc"
   source:
     path: kafka-stream-shares-demo/deploy
-    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    repoURL: "https://github.com/ignaciolago/demo-kafka.git"
     targetRevision: main
   project: kafka-stream-shares-demo
+
+

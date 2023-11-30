@@ -9,6 +9,6 @@ spec:
     server: "https://kubernetes.default.svc"
   source:
     path: cdc-camel-kafka-demo/core/frontends
-    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    repoURL: "https://github.com/ignaciolago/demo-kafka.git"
     targetRevision: main
   project: default

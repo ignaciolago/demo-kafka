@@ -9,7 +9,7 @@ spec:
     server: "https://kubernetes.default.svc"
   source:
     path: apps/ms-users-camel/gitops
-    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    repoURL: "https://github.com/ignaciolago/demo-kafka.git"
     targetRevision: main
     helm:
       valueFiles:
