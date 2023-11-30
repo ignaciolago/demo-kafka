@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontends
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-applications
+    server: "https://kubernetes.default.svc"
+  source:
+    path: cdc-camel-kafka-demo/core/frontends
+    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    targetRevision: main
+  project: default

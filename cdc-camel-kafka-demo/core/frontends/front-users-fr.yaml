@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: front-users-fr
+  namespace: openshift-gitops
+  labels: 
+    app: front-users-fr
+    type: frontend
+spec:
+  destination:
+    namespace: demo
+    server: "https://kubernetes.default.svc"
+  source:
+    path: apps/front-users-fr/gitops
+    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    targetRevision: main
+    helm:
+      valueFiles:
+      - 'dev.values.yaml'
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true  

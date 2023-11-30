@@ -1,0 +1,34 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  labels:
+    strimzi.io/cluster: kafka
+  name: mariadb-debezium-users-pt
+spec:
+  class: io.debezium.connector.mysql.MySqlConnector
+  config:
+    database.hostname: mariadb-s-users-pt.demo
+    database.port: 3306
+    database.user: root
+    database.password: parking1234
+    database.server.id: "112233"
+    database.server.name: "mariadb-s-users-pt"
+    database.whitelist: users
+    topic.prefix: "pt"
+    schema.history.internal.kafka.topic: "history.demo.pt"
+    schema.history.internal.kafka.bootstrap.servers: "kafka-kafka-bootstrap:9092"
+    database.history.kafka.bootstrap.servers: "kafka-kafka-bootstrap:9092"
+    database.history.kafka.topic: "history.demo.pt"
+    include.schema.changes: "false"
+
+    # Register AVRO schema into Service Registry
+    schema.name.adjustment.mode: avro
+    key.converter: io.apicurio.registry.utils.converter.AvroConverter
+    key.converter.apicurio.registry.url: http://apicurio-registry-service:8080/apis/registry/v2
+    key.converter.apicurio.registry.auto-register: true
+    key.converter.apicurio.registry.find-latest: true
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.apicurio.registry.url: http://apicurio-registry-service:8080/apis/registry/v2
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.find-latest: true
+  tasksMax: 1

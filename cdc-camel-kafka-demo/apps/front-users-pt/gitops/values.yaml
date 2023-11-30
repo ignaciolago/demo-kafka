@@ -1,0 +1,23 @@
+service:
+  name: front-users-pt
+  image: quay.io/dborrego/cdc-front-users-pt
+
+deployment:
+  replicas: 1
+  port: 8080
+  health:
+    liveness: /api/v1/health
+    readiness: /api/v1/health
+  resources: 
+    limits:
+      cpu: 250m
+      memory: 64Mi
+    requests:
+      cpu: 100m
+      memory: 16Mi
+
+backend:
+  name: no-default-value
+
+config:
+  env:

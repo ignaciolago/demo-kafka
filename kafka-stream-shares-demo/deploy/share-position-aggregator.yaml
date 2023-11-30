@@ -1,0 +1,37 @@
+---
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: KafkaUser
+metadata:
+  name: share-position-aggregator
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+    - resource:
+        type: topic
+        name: portfolio
+      operation: Write
+    - resource:
+        type: topic
+        name: portfolio
+      operation: Create
+    - resource:
+        type: topic
+        name: portfolio
+      operation: Describe
+    - resource:
+        type: topic
+        name: positions
+      operation: Read
+    - resource:
+        type: topic
+        name: positions
+      operation: Describe
+    - resource:
+        type: group
+        name: positions
+      operation: Read

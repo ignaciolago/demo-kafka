@@ -1,0 +1,14 @@
+service:
+  version: 0.4
+
+deployment:
+  port: 8080
+  health:
+    liveness: /
+    readiness: /
+
+backend:
+  name: s-users-fr
+
+config:
+  env:

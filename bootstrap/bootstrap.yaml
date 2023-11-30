@@ -1,0 +1,60 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cdc-camel-kafka-demo
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cdc-camel-kafka-demo
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-applications
+    server: "https://kubernetes.default.svc"
+  source:
+    path: cdc-camel-kafka-demo/components
+    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    targetRevision: main
+  project: cdc-camel-kafka-demo
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kafka-stream-shares-demo
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka-stream-shares-demo
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-applications
+    server: "https://kubernetes.default.svc"
+  source:
+    path: kafka-stream-shares-demo/deploy
+    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    targetRevision: main
+  project: kafka-stream-shares-demo

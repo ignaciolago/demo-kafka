@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka-connect
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: kafka
+    server: "https://kubernetes.default.svc"
+  source:
+    path: cdc-camel-kafka-demo/tenants/kafka-connect
+    repoURL: "https://github.com/ignaciolago/workshop-cdc.git"
+    targetRevision: main
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

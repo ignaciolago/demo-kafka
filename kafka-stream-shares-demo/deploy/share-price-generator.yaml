@@ -1,0 +1,25 @@
+---
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: KafkaUser
+metadata:
+  name: share-price-generator
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: prices
+        operation: Write
+      - resource:
+          type: topic
+          name: prices
+        operation: Create
+      - resource:
+          type: topic
+          name: prices
+        operation: Describe
