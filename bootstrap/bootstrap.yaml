@@ -43,20 +43,6 @@ spec:
     server: '*'
   sourceRepos:
   - '*'
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kafka-stream-shares-demo
-  namespace: openshift-gitops
-spec:
-  destination:
-    namespace: openshift-applications
-    server: "https://kubernetes.default.svc"
-  source:
-    path: kafka-stream-shares-demo/deploy
-    repoURL: "https://github.com/ignaciolago/demo-kafka.git"
-    targetRevision: main
-  project: kafka-stream-shares-demo
+
 
 
